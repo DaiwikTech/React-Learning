@@ -1,16 +1,43 @@
-type CalProp = {
-  value: boolean;
-  toggleShow(): void;
-};
+import { useEffect, useState } from "react";
 
-function Calculation({ value, toggleShow }: CalProp) {
+function Child() {
+  const [count, setCount] = useState<number>(0);
+
+  useEffect(() => {
+    console.log("Child mounted");
+
+    return () => {
+      console.log("Child unmounted");
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("Count Changed");
+  }, [count]);
+
   return (
     <>
-      <h1>Toggle Hide & Show</h1>
+      <h2>I am the Child component</h2>
+      <h3> Here is my value : {count} </h3>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        {" "}
+        Increase
+      </button>
 
-      <button onClick={toggleShow}>{value ? "Hide" : "Show"}</button>
+      <button
+        onClick={() => {
+          setCount(count - 1);
+        }}
+      >
+        {" "}
+        Decrease{" "}
+      </button>
     </>
   );
 }
 
-export default Calculation;
+export default Child;
