@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Calculation from "./Calculation";
+import Calculation from "./HideShow";
 
 function App() {
   const [count, setCount] = useState<number>(0);
